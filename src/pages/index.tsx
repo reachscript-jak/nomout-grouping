@@ -1,12 +1,11 @@
-import React, { useState, useCallback } from "react";
 import Link from "next/link";
+import { useCallback, useState } from "react";
 import Container from "src/components/container";
 import Header from "src/components/header";
 import { useMembers } from "src/model/use-members";
 
 const Home: React.VFC = () => {
-  // hooks
-  // メンバー
+  // hooks メンバー
   const [members, addMember] = useMembers();
   // メンバー名
   const [memberName, setMemberName] = useState("");
@@ -29,6 +28,7 @@ const Home: React.VFC = () => {
       // メンバー名を初期化
       setMemberName("");
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [memberName]
   );
 
@@ -52,6 +52,7 @@ const Home: React.VFC = () => {
           <div className="text-left">
             <ul>
               {members.map((member, i) => (
+                // eslint-disable-next-line arrow-body-style
                 <li key={i + member.name}>{`ID : ${member.mid},  Name: ${member.name}`}</li>
               ))}
             </ul>

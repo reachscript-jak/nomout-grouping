@@ -2,7 +2,8 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
   },
   "eslint.validate": ["json", "javascript", "javascriptreact", "typescript", "typescriptreact"],
   "editor.formatOnSave": true,
@@ -13,4 +14,10 @@
     "editor.formatOnSave": true
   },
   "css.validate": false,
+  "eslint.packageManager": "yarn", // ESLintライブラリ解決時に使うパッケージマネージャ
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // デフォルトフォーマッターをPrettier
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true
+  // Prettier対象外言語
+  // "prettier.disableLanguages": ["markdown"]
 }

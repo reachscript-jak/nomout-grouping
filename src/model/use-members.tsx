@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { atom, useRecoilState } from "recoil";
-import { Member } from "./member";
+
+import type { Member } from "./member";
 
 // atom
 const membersState = atom<Member[]>({
@@ -25,6 +26,7 @@ export const useMembers = () => {
       // メンバーリストを更新
       setMembers(newMembers);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [members]
   );
 
