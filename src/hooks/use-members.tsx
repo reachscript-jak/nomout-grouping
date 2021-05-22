@@ -9,6 +9,8 @@ const membersState = atom<Member[]>({
   default: [],
 });
 
+let count = 0;
+
 // メンバーリストフック
 export const useMembers = () => {
   const [members, setMembers] = useRecoilState(membersState);
@@ -20,7 +22,7 @@ export const useMembers = () => {
       const newMembers = [...members];
       // 新しいメンバーを追加
       newMembers.push({
-        mid: members.length + 1,
+        mid: count++,
         name: memberName,
       });
       // メンバーリストを更新
@@ -30,5 +32,5 @@ export const useMembers = () => {
     [members]
   );
 
-  return [members, addMember, setMembers] as const;
+  return { members, addMember, setMembers };
 };
