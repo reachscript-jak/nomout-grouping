@@ -1,6 +1,6 @@
 import Container from "src/components/container";
 import Header from "src/components/header";
-import { useMembers } from "src/model/use-members";
+import { useMembers } from "src/hooks/use-members";
 
 const Result: React.VFC = () => {
   // hooks
