@@ -6,12 +6,15 @@ import { RecoilRoot } from "recoil";
 
 const App = (props: AppProps) => {
   return (
-    <RecoilRoot>
+    <>
       <Head>
         <title>nomount-grouping</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       </Head>
-      <props.Component {...props.pageProps} />
-    </RecoilRoot>
+      <RecoilRoot>
+        <props.Component {...props.pageProps} />
+      </RecoilRoot>
+    </>
   );
 };
 
