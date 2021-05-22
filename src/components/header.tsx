@@ -1,5 +1,4 @@
-import React from "react";
-
+// eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
 const Header: React.VFC<Props> = () => {
   return (
@@ -9,4 +8,5 @@ const Header: React.VFC<Props> = () => {
   );
 };
 
+// eslint-disable-next-line import/no-default-export
 export default Header;
