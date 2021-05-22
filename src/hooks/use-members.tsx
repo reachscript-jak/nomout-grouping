@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { atom, useRecoilState } from "recoil";
 
-import type { Member } from "./member";
+import type { Member } from "../model/member";
 
 // atom
 const membersState = atom<Member[]>({
