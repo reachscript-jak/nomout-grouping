@@ -4,7 +4,7 @@ import { useMembers } from "src/hooks/use-members";
 
 const Result: React.VFC = () => {
   // hooks
-  const [members] = useMembers();
+  const { members } = useMembers();
 
   return (
     <>
@@ -17,6 +17,7 @@ const Result: React.VFC = () => {
               return <li key={i + member.name}>{`ID : ${member.mid} Name: ${member.name}`}</li>;
             })}
           </ul>
+          <button className="... ring-0 focus:outline-none">やり直す</button>
         </Container>
       </main>
     </>
