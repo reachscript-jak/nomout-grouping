@@ -2,7 +2,7 @@
 import { useCallback, useState } from "react";
 import Container from "src/components/container";
 import Header from "src/components/header";
-import { useGroups } from "src/hooks/use-group";
+import { useGroups } from "src/hooks/use-groups";
 import { useMembers } from "src/hooks/use-members";
 import { Member } from "src/model/member";
 
