@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { useRouter } from "next/dist/client/router";
 import { useCallback, useState } from "react";
 import Container from "src/components/container";
 import Header from "src/components/header";
@@ -8,6 +9,8 @@ import { Member } from "src/model/member";
 
 const HomeContainer: React.VFC = () => {
   // hooks
+  // router
+  const router = useRouter();
   // メンバー
   const { members, addMember, setMembers } = useMembers();
   // メンバー名
@@ -51,6 +54,7 @@ const HomeContainer: React.VFC = () => {
   // グルーピング開始ボタンハンドラ
   const onClickStart = useCallback(() => {
     setGroups(members, groupNumber);
+    router.push("/result");
   }, [members]);
 
   return (
