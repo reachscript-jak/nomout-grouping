@@ -1,13 +1,24 @@
+/* eslint-disable */
+import { useRouter } from "next/dist/client/router";
 import { useCallback, useState } from "react";
 import Container from "src/components/container";
 import Header from "src/components/header";
+import { useGroups } from "src/hooks/use-groups";
 import { useMembers } from "src/hooks/use-members";
+import { Member } from "src/model/member";
 
-const Home: React.VFC = () => {
-  // hooks メンバー
+const HomeContainer: React.VFC = () => {
+  // hooks
+  // router
+  const router = useRouter();
+  // メンバー
   const { members, addMember, setMembers } = useMembers();
   // メンバー名
   const [memberName, setMemberName] = useState("");
+  // グループ
+  const { setGroups } = useGroups();
+  // グループ数
+  const [groupNumber] = useState(3);
 
   //function
   // メンバー名変更ハンドラ
@@ -40,13 +51,57 @@ const Home: React.VFC = () => {
     [members]
   );
 
+  // グルーピング開始ボタンハンドラ
+  const onClickStart = useCallback(() => {
+    setGroups(members, groupNumber);
+    router.push("/result");
+  }, [members]);
+
+  return (
+    <HomePresenter
+      onSubmitAdd={onSubmitAdd}
+      memberName={memberName}
+      groupNumber={groupNumber}
+      onChangeMemberName={onChangeMemberName}
+      members={members}
+      onClickRemove={onClickRemove}
+      onClickStart={onClickStart}
+    />
+  );
+};
+
+type PresenterProps = {
+  // メンバー追加フォームサブミットハンドラ
+  onSubmitAdd: (e: React.FormEvent<HTMLFormElement>) => void;
+  // メンバー名
+  memberName: string;
+  // グループ数
+  groupNumber: number;
+  // メンバー名変更関数
+  onChangeMemberName: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  // メンバーリスト
+  members: Member[];
+  // メンバー削除ボタンハンドラ
+  onClickRemove: (mid: number) => void;
+  // グルーピング開始ボタンハンドラ;
+  onClickStart: () => void;
+};
+const HomePresenter: React.VFC<PresenterProps> = ({
+  onSubmitAdd,
+  memberName,
+  groupNumber,
+  onChangeMemberName,
+  members,
+  onClickRemove,
+  onClickStart,
+}) => {
   return (
     <>
       <Header />
       <main className="text-center">
         <Container>
           <div className="flex items-center justify-center mt-10">
-            <div className="text-8xl pr-3">03</div>
+            <div className="text-8xl pr-3">{`${groupNumber < 9 ? "0" + groupNumber : groupNumber}`}</div>
             <span className="material-icons text-5xl">settings</span>
           </div>
           <div className="text-xl mt-10">
@@ -86,7 +141,9 @@ const Home: React.VFC = () => {
           )}
           {members.length > 0 && (
             <div className="mt-10 text-xl ">
-              <button className="focus:outline-none">Start</button>
+              <button onClick={onClickStart} className="focus:outline-none">
+                Start
+              </button>
             </div>
           )}
         </Container>
@@ -96,4 +153,4 @@ const Home: React.VFC = () => {
 };
 
 // eslint-disable-next-line import/no-default-export
-export default Home;
+export default HomeContainer;
