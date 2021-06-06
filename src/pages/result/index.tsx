@@ -13,29 +13,33 @@ const Result: React.VFC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    groups.length == 0 && router.push("");
+    groups.length == 0 && router.push("/");
   }, []);
 
   return (
     <>
       <Header />
-      <main>
+      <main className="text-center">
         <Container>
-          <h1>結果画面</h1>
-          {groups.map((num, i) => {
-            return (
-              <div key={"グループ" + i}>
-                <h2>{`グループ${i + 1}`}</h2>
-                <ul>
-                  {num.members.map((people, j) => {
-                    return <li key={j + people.name}>{`ID：${people.mid}名前：${people.name}`}</li>;
-                  })}
-                </ul>
-              </div>
-            );
-          })}
+          <h1 className="text-2xl font-bold">結果画面</h1>
+          <div className="flex items-center justify-center mt-10">
+            {groups.map((num, i) => {
+              return (
+                <div key={"グループ" + i} className="p-5">
+                  <h2 className="text-xl font-bold">{`グループ${i + 1}`}</h2>
+                  <ul className="p-3 text-left">
+                    {num.members.map((people, j) => {
+                      return (
+                        <li key={j + people.name} className="text-lg">{`ID：${people.mid}   名前：${people.name}`}</li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
           <button
-            className="... ring-0 focus:outline-none"
+            className="... ring-0 focus:outline-none text-xl border-gray-300 border-solid border-b-2 "
             onClick={() => {
               setGroups(members, groupNumber);
             }}
